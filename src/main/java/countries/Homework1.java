@@ -20,23 +20,23 @@ public class Homework1 {
      * Returns whether there is at least one country with the word "island" in its name ignoring case.
      */
     public boolean streamPipeline1() {
-        // TODO
-        return false;
+
+        return countries.stream().filter(country -> country.getName().toLowerCase().contains("island")).count() != 0;
     }
 
     /**
      *  Returns the first country name that contains the word "island" ignoring case.
      */
     public Optional<String> streamPipeline2() {
-        // TODO
-        return null;
+
+        return countries.stream().filter(country -> country.getName().toLowerCase().contains("island")).findFirst().get().getName();
     }
 
     /**
      * Prints each country name in which the first and the last letters are the same ignoring case.
      */
     public void streamPipeline3() {
-        // TODO
+        countries.stream().filter(country -> country.getName().toLowerCase().endsWith(country.getName().toLowerCase().substring(0,1))).map(Country::getName).forEach(System.out::println)
     }
 
     /**

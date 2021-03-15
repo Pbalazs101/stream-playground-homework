@@ -21,36 +21,55 @@ public class Homework1 {
      */
     public boolean streamPipeline1() {
 
-        return countries.stream().filter(country -> country.getName().toLowerCase().contains("island")).count() != 0;
+        return countries.stream().
+        filter(country -> country.getName().toLowerCase().contains("island")).count() != 0;
     }
 
     /**
      *  Returns the first country name that contains the word "island" ignoring case.
      */
+
     public Optional<String> streamPipeline2() {
 
-        return countries.stream().filter(country -> country.getName().toLowerCase().contains("island")).findFirst().get().getName();
+      /*
+      return countries.stream().
+      filter(country -> country.getName().toLowerCase().contains("island")).
+      findFirst().
+      get().
+      getName();
+      */
+      return null;
+
     }
 
     /**
      * Prints each country name in which the first and the last letters are the same ignoring case.
      */
     public void streamPipeline3() {
-        countries.stream().filter(country -> country.getName().toLowerCase().endsWith(country.getName().toLowerCase().substring(0,1))).map(Country::getName).forEach(System.out::println)
+        countries.stream().
+        filter(country -> country.getName().toLowerCase().
+        endsWith(country.getName().toLowerCase().substring(0,1))).
+        map(Country::getName).
+        forEach(System.out::println);
     }
 
     /**
      * Prints the populations of the first ten least populous countries.
      */
     public void streamPipeline4() {
-        // TODO
+        countries.stream().
+        mapToLong(Country::getPopulation).
+        sorted().limit(10).
+        forEach(System.out::println);
     }
 
     /**
      * Prints the names of the first ten least populous countries.
      */
     public void streamPipeline5() {
-        // TODO
+        countries.stream().
+        sorted(Comparator.comparingLong(Country::getPopulation)).
+        limit(10).forEach(country -> System.out.printf("%s\n", country.getName()));
     }
 
     /**
@@ -88,7 +107,9 @@ ed by the language code "es").
      * Prints the names of countries with null area.
      */
     public void streamPipeline10() {
-        // TODO
+        countries.stream().
+        filter(country -> country.getArea() == null).
+        forEach(country -> System.out.printf("%s\n", country.getName()));
     }
 
     /**
@@ -102,7 +123,7 @@ ed by the language code "es").
      * Returns the average length of country names.
      */
     public double streamPipeline12() {
-        // TODO
+        //TODO
         return 0;
     }
 
@@ -110,14 +131,23 @@ ed by the language code "es").
      * Prints all distinct regions of the countries with null area.
      */
     public void streamPipeline13() {
-        // TODO
+        countries.stream().
+        filter(country -> country.getArea() == null).
+        map(country -> country.getRegion()).distinct().
+        forEach(System.out::println);
     }
 
     /**
      * Returns the largest country with non-null area.
      */
     public Optional<Country> streamPipeline14() {
-        // TODO
+      /*
+        return countries.stream().
+        filter(country -> country.getArea() != null).
+        sorted(Comparator.comparing((Country::getArea)).reversed()).
+        limit(1);
+        */
+
         return null;
     }
 
@@ -125,14 +155,21 @@ ed by the language code "es").
      * Prints the names of countries with a non-null area below 1.
      */
     public void streamPipeline15() {
-        // TODO
+        countries.stream().
+        filter(country -> country.getArea() != null && country.getArea().intValue() < 1).
+        map(Country::getName).
+        forEach(System.out::println);
     }
 
     /**
      * Prints all distinct timezones of European and Asian countries.
      */
     public void streamPipeline16() {
-        // TODO
+        countries.stream().
+        filter(country -> country.getRegion() == Region.EUROPE || country.getRegion() == Region.ASIA).
+        map(country -> country.getTimezones()).
+        distinct().
+        forEach(System.out::println);
     }
 
 }

@@ -24,7 +24,7 @@ public class Homework2 {
      * Returns the longest country name translation.
      */
     public Optional<String> streamPipeline1() {
-      
+
         return countries.stream()
                 .flatMap(country -> country.getTranslations().values().stream())
                 .max(Comparator.comparing(String::length));
@@ -136,7 +136,7 @@ public class Homework2 {
      * Returns a map that contains for each country code the name of the corresponding country in Portuguese ({@code "pt"}).
      */
     public Map<String, String> streamPipeline13() {
-
+        // TODO
         return null;
     }
 

@@ -24,10 +24,9 @@ public class Homework2 {
      * Returns the longest country name translation.
      */
     public Optional<String> streamPipeline1() {
+      
         return countries.stream()
-                .flatMap(country -> country.getTranslations()
-                        .values()
-                        .stream())
+                .flatMap(country -> country.getTranslations().values().stream())
                 .max(Comparator.comparing(String::length));
     }
 
@@ -58,6 +57,7 @@ public class Homework2 {
      * Prints single word country names (i.e., country names that do not contain any space characters).
      */
     public void streamPipeline4() {
+
       countries.stream()
              .map(Country::getName)
              .filter(countryName -> !(countryName.contains(" ")))
